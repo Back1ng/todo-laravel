@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Todo extends Model
+class Section extends Model
 {
     protected $guarded = [];
 
-    public function section()
+    public function todo()
     {
-        $this->belongsTo(Section::class);
+        return $this->hasMany(Todo::class);
     }
 }
