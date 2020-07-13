@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function store()
     {
-        Todo::create(request()->all());
+        Todo::create($this->validateRequest());
 
         return response()->redirectTo("/");
     }
@@ -23,8 +23,16 @@ class TodoController extends Controller
 
     public function update(Todo $todo)
     {
-        $todo->update(request()->all());
+        $todo->update($this->validateRequest());
 
         return response()->redirectTo("/todo/".$todo->id);
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
+            'name' => 'required',
+            'section_id' => 'required'
+        ]);
     }
 }

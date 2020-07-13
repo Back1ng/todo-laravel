@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/todo', 'TodoController@store');
 Route::delete('/todo/{todo}', 'TodoController@delete');
 Route::put('/todo/{todo}', 'TodoController@update');
+
+Route::post('/section', 'SectionController@store');
+Route::delete('/section/{section}', 'SectionController@delete');

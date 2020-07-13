@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Section;
 use App\Todo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,9 +15,11 @@ class TodoManagementTest extends TestCase
     /** @test */
     public function todo_can_be_created()
     {
+        $this->withoutExceptionHandling();
         $response = $this->post('/todo', $this->data());
 
         $response->assertRedirect("/");
+        $response->assertSessionDoesntHaveErrors(['name']);
         $this->assertCount(1, Todo::all());
     }
 
@@ -33,7 +36,7 @@ class TodoManagementTest extends TestCase
     }
 
     /** @test */
-    public function todo_can_be_edited()
+    public function todo_name_can_be_edited()
     {
         $this->post('/todo', $this->data());
         $this->assertCount(1, Todo::all());
@@ -47,10 +50,19 @@ class TodoManagementTest extends TestCase
         $this->assertEquals("Good Name", $todo->name);
     }
 
+    /** @test */
+    public function todo_name_is_required()
+    {
+        $response = $this->post('/todo', array_merge($this->data(), ['name' => '']));
+
+        $response->assertSessionHasErrors(['name']);
+    }
+
     private function data()
     {
         return [
-            'name' => "Random Name"
+            'name' => "Random Name",
+            'section_id' => factory(Section::class)->create()->id,
         ];
     }
 }
