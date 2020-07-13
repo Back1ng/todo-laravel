@@ -39,6 +39,14 @@ class SectionManagementTest extends TestCase
     }
 
     /** @test */
+    public function section_name_is_required()
+    {
+        $response = $this->post('/section', array_merge($this->dataSection(), ['name' => '']));
+
+        $response->assertSessionHasErrors('name');
+    }
+
+    /** @test */
     public function section_dont_remove_another_todo()
     {
         $response = $this->post('/section', $this->dataSection());

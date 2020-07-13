@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'SectionController@index');
+
+Route::get('/todo/create', 'TodoController@create');
 Route::post('/todo', 'TodoController@store');
 Route::delete('/todo/{todo}', 'TodoController@delete');
 Route::put('/todo/{todo}', 'TodoController@update');
 
 Route::post('/section', 'SectionController@store');
+Route::get('/section/{section}', 'SectionController@show');
 Route::delete('/section/{section}', 'SectionController@delete');

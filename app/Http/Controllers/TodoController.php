@@ -11,7 +11,7 @@ class TodoController extends Controller
     {
         Todo::create($this->validateRequest());
 
-        return response()->redirectTo("/");
+        return redirect()->back();
     }
 
     public function delete(Todo $todo)
