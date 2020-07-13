@@ -24,7 +24,6 @@ class TodoManagementTest extends TestCase
     public function todo_can_be_deleted()
     {
         $this->post('/todo', $this->data());
-
         $this->assertCount(1, Todo::all());
 
         $response = $this->delete('/todo/'.Todo::first()->id);
@@ -36,16 +35,13 @@ class TodoManagementTest extends TestCase
     /** @test */
     public function todo_can_be_edited()
     {
-        $this->withoutExceptionHandling();
         $this->post('/todo', $this->data());
-
         $this->assertCount(1, Todo::all());
 
         $todo = Todo::first();
-
         $response = $this->put("/todo/".$todo->id, array_merge($this->data(), ['name' => 'Good Name']));
-
         $todo = $todo->fresh();
+
         $response->assertRedirect("/todo/".$todo->id);
         $this->assertNotEquals($this->data()['name'], $todo->name);
         $this->assertEquals("Good Name", $todo->name);
