@@ -17,6 +17,7 @@ Route::get('/', 'SectionController@index');
 
 Route::get('/todo/create', 'TodoController@create');
 Route::post('/todo', 'TodoController@store');
+Route::put('/todo/{todo}/ready', 'TodoController@updateReadyMark');
 Route::delete('/todo/{todo}', 'TodoController@delete');
 Route::put('/todo/{todo}', 'TodoController@update');
 

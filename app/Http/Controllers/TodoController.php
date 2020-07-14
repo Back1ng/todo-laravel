@@ -28,11 +28,18 @@ class TodoController extends Controller
         return response()->redirectTo("/todo/".$todo->id);
     }
 
+    public function updateReadyMark(Todo $todo)
+    {
+        $todo->update(['ready' => ! (bool)$todo->ready]);
+
+        return redirect()->back();
+    }
+
     private function validateRequest()
     {
         return request()->validate([
             'name' => 'required',
-            'section_id' => 'required'
+            'section_id' => 'required',
         ]);
     }
 }

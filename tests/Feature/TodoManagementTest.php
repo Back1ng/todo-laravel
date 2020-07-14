@@ -58,6 +58,30 @@ class TodoManagementTest extends TestCase
         $response->assertSessionHasErrors(['name']);
     }
 
+    /** @test */
+    public function todo_ready_mark_is_set_at_creation()
+    {
+        $response = $this->post('/todo', $this->data());
+
+        $this->assertCount(1, Todo::all());
+        $this->assertEquals(0, Todo::first()->ready);
+    }
+
+    /** @test */
+    public function todo_change_status_of_ready_mark()
+    {
+        $this->withoutExceptionHandling();
+        $this->post('/todo', $this->data());
+        $this->assertCount(1, Todo::all());
+
+        $todo = Todo::first();
+        $this->put('/todo/'.$todo->id.'/ready');
+        $this->assertEquals(1, $todo->fresh()->ready);
+
+        $this->put('/todo/'.$todo->id.'/ready');
+        $this->assertEquals(0, $todo->fresh()->ready);
+    }
+
     private function data()
     {
         return [

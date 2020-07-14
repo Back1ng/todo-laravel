@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="bg-blue-400 p-4 mt-5 h-auto shadow rounded">
+        <p><a class="text-white" href="/">Back to Index Page</a></p>
         <p class="flex justify-center text-white" style="font-size: 14pt;">Current Section: {{ $section->name }}</p>
         @error('name')
         <div class="alert alert-danger flex justify-center w-25 m-auto">{{ $message }}</div>
@@ -19,7 +20,8 @@
         @foreach($todos as $todo)
             <div class="bg-blue-200 shadow rounded p-3 m-2">
                 {{ $todo->name }}
-                <form method="post" action="/todo/{{ $todo->id }}">
+                <form method="post" action="/todo/{{ $todo->id }}/ready">
+                    @method('PUT')
                     @csrf
 
                     <input

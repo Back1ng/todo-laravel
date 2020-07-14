@@ -17,6 +17,7 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('section_id');
             $table->string('name');
+            $table->boolean('ready')->default(0);
             $table->timestamps();
         });
     }
