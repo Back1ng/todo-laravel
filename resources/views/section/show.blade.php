@@ -17,6 +17,7 @@
 
         </form>
 
+        <div class="flex flex-wrap">
         @foreach($todos as $todo)
             <div class="bg-blue-200 shadow rounded p-3 m-2">
                 {{ $todo->name }}
@@ -35,5 +36,6 @@
                 </form>
             </div>
         @endforeach
+        </div>
     </div>
 @endsection
