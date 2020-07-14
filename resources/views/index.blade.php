@@ -28,7 +28,7 @@
 
                     <input class="p-1 shadow rounded bg-red-500 text-white" type="submit" value="Delete">
 
-                    <button class="p-1 shadow rounded bg-orange-500 text-white"><a href="/section/{{ $section->id }}">Show</a></button>
+                    <a class="p-1 shadow rounded bg-orange-500 text-white" href="/section/{{ $section->id }}">Show</a>
                 </form>
             </div>
 
