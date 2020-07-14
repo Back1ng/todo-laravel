@@ -18,7 +18,7 @@
         <br>
         <p class="flex justify-center text-white" style="font-size: 14pt;">Select your section</p>
 
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap text-center">
         @foreach ($sections as $section)
             <div class="bg-blue-200 shadow rounded p-3 m-2">
                 {{ $section->name }}
@@ -31,7 +31,7 @@
                     <a class="p-1 shadow rounded bg-orange-500 text-white" href="/section/{{ $section->id }}">Show</a>
                 </form>
             </div>
-            
+
         @endforeach
         </div>
 

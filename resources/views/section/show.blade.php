@@ -17,27 +17,29 @@
 
         </form>
 
-        <div class="flex flex-wrap d-inline-flex">
+        <div class="flex flex-wrap text-center">
         @foreach($todos as $todo)
             <div class="bg-blue-200 shadow rounded p-3 m-2">
-                {{ $todo->name }}
-                <form class="p-2" method="post" action="/todo/{{ $todo->id }}/ready">
-                    @method('PUT')
-                    @csrf
+                {{ $todo->name }}<br>
+                <div class="inline-flex">
+                    <form class="p-2" method="post" action="/todo/{{ $todo->id }}/ready">
+                        @method('PUT')
+                        @csrf
 
-                    <input
-                        class="p-1 shadow rounded @if($todo->ready) bg-green-500 @else bg-orange-500 @endif text-white"
-                        type="submit"
-                        value="@if($todo->ready)Mark as unready @else Mark as ready @endif"
-                    >
-                </form>
-                <form class="p-2" method="post" action="/todo/{{ $todo->id }}">
-                    @method('DELETE')
-                    @csrf
+                        <input
+                            class="p-1 shadow rounded @if($todo->ready) bg-green-500 @else bg-orange-500 @endif text-white"
+                            type="submit"
+                            value="@if($todo->ready)Mark as unready @else Mark as ready @endif"
+                        >
+                    </form>
+                    <form class="p-2" method="post" action="/todo/{{ $todo->id }}">
+                        @method('DELETE')
+                        @csrf
 
-                    <input class="p-1 shadow rounded bg-red-500 text-white" type="submit" value="Delete">
+                        <input class="p-1 shadow rounded bg-red-500 text-white" type="submit" value="Delete">
 
-                </form>
+                    </form>
+                </div>
             </div>
         @endforeach
         </div>
