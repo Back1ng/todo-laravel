@@ -17,11 +17,11 @@
 
         </form>
 
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap d-inline-flex">
         @foreach($todos as $todo)
             <div class="bg-blue-200 shadow rounded p-3 m-2">
                 {{ $todo->name }}
-                <form method="post" action="/todo/{{ $todo->id }}/ready">
+                <form class="p-2" method="post" action="/todo/{{ $todo->id }}/ready">
                     @method('PUT')
                     @csrf
 
@@ -30,8 +30,12 @@
                         type="submit"
                         value="@if($todo->ready)Mark as unready @else Mark as ready @endif"
                     >
-                    <input class="p-1 shadow rounded bg-red-500 text-white" type="submit" value="Delete">
+                </form>
+                <form class="p-2" method="post" action="/todo/{{ $todo->id }}">
+                    @method('DELETE')
+                    @csrf
 
+                    <input class="p-1 shadow rounded bg-red-500 text-white" type="submit" value="Delete">
 
                 </form>
             </div>

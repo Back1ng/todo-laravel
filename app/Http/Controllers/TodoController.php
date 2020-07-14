@@ -18,7 +18,7 @@ class TodoController extends Controller
     {
         $todo->delete();
 
-        return response()->redirectTo("/");
+        return redirect()->back();
     }
 
     public function update(Todo $todo)

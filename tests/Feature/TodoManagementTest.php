@@ -31,7 +31,6 @@ class TodoManagementTest extends TestCase
 
         $response = $this->delete('/todo/'.Todo::first()->id);
 
-        $response->assertRedirect("/");
         $this->assertCount(0, Todo::all());
     }
 

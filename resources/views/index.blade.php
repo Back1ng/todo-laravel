@@ -31,7 +31,7 @@
                     <a class="p-1 shadow rounded bg-orange-500 text-white" href="/section/{{ $section->id }}">Show</a>
                 </form>
             </div>
-
+            
         @endforeach
         </div>
 
